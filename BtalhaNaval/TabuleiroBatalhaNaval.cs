@@ -63,5 +63,27 @@ namespace BatalhaNaval
             }
             return tabuleiro;
         }
+
+        public bool AdicionarEmbarcacao(Embarcacao embarcacao, Posicao posicao)
+        {
+            // Verifica se a embarcação ultrapassa as dimensões do tabuleiro
+            if (posicao.Linha + embarcacao.Tamanho > numLinhas || posicao.Coluna + embarcacao.Tamanho > numColunas)
+                return false;
+
+            // Verifica se as posições onde a embarcação será adicionada já estão ocupadas
+            for (int i = 0; i < embarcacao.Tamanho; i++)
+            {
+                if (tabuleiro[posicao.Linha, posicao.Coluna + i] != 'A')
+                    return false;
+            }
+
+            // Adiciona a embarcação no tabuleiro
+            for (int i = 0; i < embarcacao.Tamanho; i++)
+            {
+                tabuleiro[posicao.Linha, posicao.Coluna + i] = 'B'; // 'B' representa barco
+            }
+
+            return true;
+        }
     }
 }
