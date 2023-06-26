@@ -1,31 +1,33 @@
+using BatalhaNaval;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BtalhaNaval
+namespace BatalhaNaval
 {
     internal class JogadorHumano
     {
-        //tabuleiro
         private TabuleiroBatalhaNaval tabuleiro;
-
-        //pontuacao do jogador computador
         private int pontuacao;
-
-        //posiçoes dos tiros já dados
         private Posicao[] posTirosDados;
+        private int contadorDeTiros = 0;
 
-        private int contadorDeTiros;
+        public JogadorHumano(int numLinhas, int numColunas)
+        {
+            posTirosDados = new Posicao[100];
+            tabuleiro = new TabuleiroBatalhaNaval(numLinhas, numColunas);
+            pontuacao = 0;
+
+            //this.contadorDeTiros = 0;
+        }
 
         //escolher local dos tiros
         private Posicao EscolherAtaque()
         {
-            int contador = 0;
-
+            //int contador = 0;
             bool condicao = false;
-
             int linha, coluna;
 
             do
@@ -39,7 +41,14 @@ namespace BtalhaNaval
 
                 for (int i = 0; i < contadorDeTiros; i++)
                 {
-                    if (posTirosDados[i].Linha == linha && posTirosDados[i].Coluna == coluna && linha < 0 && coluna < 0 && linha >= tabuleiro.numLinhas)
+                    if (posTirosDados[i].Linha == linha && posTirosDados[i].Coluna == coluna)
+                    {
+                        condicao = true;
+                        Console.WriteLine("Posição já utilizada anteriomente!");
+                        break;
+                    }
+
+                    if (linha < 0 && linha >= tabuleiro.NumLinhas && coluna < 0 && coluna >= tabuleiro.NumColunas)
                     {
                         condicao = true;
                         Console.WriteLine("Posição invalida!");
@@ -49,24 +58,13 @@ namespace BtalhaNaval
 
             } while (condicao);
 
-            Posicao teste = new Posicao(linha, coluna);
-
-            posTirosDados[contadorDeTiros] = teste;
+            Posicao posicao = new Posicao(linha, coluna);
+            posTirosDados[contadorDeTiros] = posicao;
 
             contadorDeTiros++;
-
             return this.posTirosDados[contadorDeTiros - 1];
         }
 
-        public JogadorHumano(int linha, int coluna)
-        {
-            posTirosDados = new Posicao[100];
-
-            tabuleiro = new TabuleiroBatalhaNaval(linha, coluna);
-
-            this.pontuacao = 0;
-
-            this.contadorDeTiros = 0;
-        }
+        
     }
 }
