@@ -44,10 +44,11 @@ using System.Threading.Tasks;
                 while (linha != null)
                 {
                     vet = linha.Split(';');
-                    navio = vet[0];
-                    lin = int.Parse(vet[1]);
-                    col = int.Parse(vet[2]);
-                    //Falta adicionar lin e col para o tabuleiro do computador
+                    navio = vet[0]; //Nome dos navios
+                    lin = int.Parse(vet[1]); //posição da linha
+                    col = int.Parse(vet[2]); //posição da coluna
+                    Posicao novaPosicao = new Posicao(lin, col); 
+                    posicao = novaPosicao;
                     linha = reader.ReadLine();
                 }
 
@@ -56,7 +57,7 @@ using System.Threading.Tasks;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"ERRO: {ex}");
+                Console.WriteLine("ERRO: " + ex.Message);
             }
             
         }
@@ -70,7 +71,7 @@ using System.Threading.Tasks;
         }
 
         //Método para checar se a posição já foi usada ou não
-        public bool PosiValida(Posicao posicao)
+        public bool PosiInvalida(Posicao posicao)
         {
             foreach(Posicao pos in posTirosDados) { 
                 if (pos.Linha == posicao.Linha && pos.Coluna == posicao.Coluna)
@@ -84,33 +85,40 @@ using System.Threading.Tasks;
 
         //Método para efetuar o tiro
 
-        public Posicao EscolherAtaqueComputador()
+        public Posicao EscolherAtaque()
         {
             Random random = new Random();
             Posicao posicao = PosiAleatoria(random);
-            while(PosiValida(posicao))
+            int contPosicao = 0;
+            //Checa se já usou aquela posição antes
+            while(PosiInvalida(posicao))
             {
                 posicao = PosiAleatoria(random);
             }
-            //Falta colocar posicao na array posTirosDados
+            //Caso a posição não seja repetida, adiciona aquela posição nova ao vetor posTirosDados
+            while(contPosicao <= 100)
+            {
+                posTirosDados[contPosicao] = posicao;
+            }
+            contPosicao++;
+            pontuacao++;
             return posicao;
 
         }
 
         //Método para levar o tiro
-        public bool ReceberAtaqueComputador(Posicao posicao)
+        public bool ReceberAtaque(Posicao posicao)
         {
-            for(int i = 0; i < tabuleiro.NumLinhas; i++)
+            // Atualiza o tabuleiro com o tiro recebido
+            bool atingiuEmbarcacao = tabuleiro.RecebeuAtaque(posicao);
+
+            // Se alguma embarcação foi atingida, incrementa a pontuação
+            if (atingiuEmbarcacao)
             {
-                for(int j = 0; j < tabuleiro.NumColunas; j++)
-                {
-                    if (tabuleiro[i, j] != 'A')
-                    {
-                        //Falta atualizar o tabuleiro e colocar a Array correta.
-                        return true;
-                    }
-                }
-            } return false;
+                pontuacao++;
+            }
+
+            return atingiuEmbarcacao;
         }
         
 
