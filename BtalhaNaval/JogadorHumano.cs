@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BatalhaNaval
 {
-    internal class JogadorHumano
+    class JogadorHumano
     {
         private TabuleiroBatalhaNaval tabuleiro;
         private int pontuacao;
@@ -65,6 +65,19 @@ namespace BatalhaNaval
             return this.posTirosDados[contadorDeTiros - 1];
         }
 
-        
+        public bool ReceberAtaque(Posicao posicao)
+        {
+            // Atualiza o tabuleiro com o tiro recebido
+            bool atingiuEmbarcacao = tabuleiro.RecebeuAtaque(posicao);
+
+            // Se alguma embarcação foi atingida, incrementa a pontuação
+            if (atingiuEmbarcacao)
+            {
+                pontuacao++;
+            }
+
+            return atingiuEmbarcacao;
+        }
+
     }
 }
