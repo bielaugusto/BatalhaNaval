@@ -45,9 +45,9 @@ using System.Threading.Tasks;
                 {
                     vet = linha.Split(';');
                     navio = vet[0]; //Nome dos navios
-                    lin = int.Parse(vet[1]); //posição da linha
-                    col = int.Parse(vet[2]); //posição da coluna
-                    Posicao novaPosicao = new Posicao(lin, col); 
+                    tabuleiro.NumLinhas = int.Parse(vet[1]); //posição da linha
+                    tabuleiro.NumColunas = int.Parse(vet[2]); //posição da coluna
+                    Posicao novaPosicao = new Posicao(tabuleiro.NumLinhas, tabuleiro.NumColunas);
                     posicao = novaPosicao;
                     linha = reader.ReadLine();
                 }
