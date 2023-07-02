@@ -13,8 +13,11 @@ using System.Threading.Tasks;
         private int pontuacao;
         private Posicao posicao;
         private Posicao[] posTirosDados;
+        private int numLinhas;
+        private int numColunas;
         Random rdn = new Random();
 
+       
         public int Pontuacao
         {
             get { return pontuacao; }
@@ -31,10 +34,17 @@ using System.Threading.Tasks;
 
        public JogadorComputador(int numLinhas, int numColunas)
         {
+           this.numLinhas = numLinhas;
+           this.numColunas = numColunas;
+            
+        }
+
+
+        public void LerArquivo()
+        {
             try
             {
                 string[] vet = new string[3];
-                int lin, col;
                 string navio;
                 pontuacao = 0;
 
@@ -45,9 +55,9 @@ using System.Threading.Tasks;
                 {
                     vet = linha.Split(';');
                     navio = vet[0]; //Nome dos navios
-                    tabuleiro.NumLinhas = int.Parse(vet[1]); //posição da linha
-                    tabuleiro.NumColunas = int.Parse(vet[2]); //posição da coluna
-                    Posicao novaPosicao = new Posicao(tabuleiro.NumLinhas, tabuleiro.NumColunas);
+                    numLinhas = int.Parse(vet[1]); //posição da linha
+                    numColunas = int.Parse(vet[2]); //posição da coluna
+                    Posicao novaPosicao = new Posicao(numLinhas, numColunas);
                     posicao = novaPosicao;
                     linha = reader.ReadLine();
                 }
@@ -59,7 +69,6 @@ using System.Threading.Tasks;
             {
                 Console.WriteLine("ERRO: " + ex.Message);
             }
-            
         }
 
         //Método para gerar uma posição aleatória
