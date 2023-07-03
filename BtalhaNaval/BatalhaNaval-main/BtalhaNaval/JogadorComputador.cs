@@ -13,20 +13,87 @@ using System.Threading.Tasks;
         private int pontuacao;
         private Posicao posicao;
         private Posicao[] posTirosDados;
-        Random rdn = new Random();
         private int numLinhas;
         private int numColunas;
+        TabuleiroBatalhaNaval tab1 = new TabuleiroBatalhaNaval(10, 10);
+        Random rdn = new Random();
 
-        
+       
+        public int Pontuacao
+        {
+            get { return pontuacao; }
+            set { pontuacao = value; }
+        }
+
+         public TabuleiroBatalhaNaval Tabuleiro 
+         {
+            get {return tabuleiro;}
+            set {tabuleiro = value;}         
+         }
+
         //Construtor da classe
 
        public JogadorComputador(int numLinhas, int numColunas)
         {
+           this.numLinhas = numLinhas;
+           this.numColunas = numColunas;
             
-            this.numLinhas = numLinhas;
-            this.numColunas = numColunas;
-            tabuleiro = new TabuleiroBatalhaNaval(10, 10);
+        }
 
+
+        public void LerArquivo()
+        {
+            try
+            {
+                string[] vet;
+                string navio;
+                int tamanho = 0;
+                pontuacao = 0;
+               
+
+                //Lê o arquivo e já pega a linha e coluna de cada navio enquanto preenche o tabuleiro.
+                StreamReader reader = new StreamReader("C:\\Users\\gusta\\OneDrive\\Área de Trabalho\\frotaComputador.txt", Encoding.UTF8);
+                string linha = reader.ReadLine();
+                while (linha != null)
+                {
+                    vet = linha.Split(';');
+                    navio = vet[0]; //Nome dos navios
+                    numLinhas = int.Parse(vet[1]); //posição da linha
+                    numColunas = int.Parse(vet[2]); //posição da coluna
+                    //Pega os dados para a classe Posicao
+                    Posicao novaPosicao = new Posicao(numLinhas, numColunas);
+                    posicao = novaPosicao;
+                    //Pega os dados para a classe Embarcacao
+                    if(navio == "Porta-aviões")
+                    {
+                        tamanho = 5;
+                    } else if(navio == "Encouraçado")
+                    {
+                    } else if(navio == "Cruzador")
+                    {
+                        tamanho = 3;
+                    } else if(navio == "Hidroavião")
+                    {
+                        tamanho = 2;
+                    } else if(navio == "Submarino")
+                    {
+                        tamanho = 1;
+                    }
+                    Embarcacao embarcacao = new Embarcacao(navio, tamanho);
+                    tab1.AdicionarEmbarcacao(embarcacao, posicao);
+
+
+                    linha = reader.ReadLine();
+                }
+
+                reader.Close();
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERRO: " + ex.Message);
+            }
         }
 
         //Método para gerar uma posição aleatória
@@ -87,52 +154,8 @@ using System.Threading.Tasks;
 
             return atingiuEmbarcacao;
         }
-
-        public void lerArquivo()
-        {
-            try
-            {
-                string[] vet = new string[3];
-                int lin, col;
-                string navio;
-                pontuacao = 0;
-
-                //Lê o arquivo e já pega a linha e coluna de cada navio enquanto preenche o tabuleiro.
-                StreamReader reader = new StreamReader("C:\\Users\\Pedro\\Desktop\\frotaComputador.txt", Encoding.UTF8);
-                string linha = reader.ReadLine();
-                while (linha != null)
-                {
-                    vet = linha.Split(';');
-                    navio = vet[0]; //Nome dos navios
-                    tabuleiro.NumLinhas = int.Parse(vet[1]); //posição da linha
-                    tabuleiro.NumColunas = int.Parse(vet[2]); //posição da coluna
-                    Posicao novaPosicao = new Posicao(tabuleiro.NumLinhas, tabuleiro.NumColunas);
-                    posicao = novaPosicao;
-                    linha = reader.ReadLine();
-                }
-
-                reader.Close();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ERRO: " + ex.Message);
-            }
-        }
-
-        public int Pontuacao
-        {
-            get { return pontuacao; }
-            set { pontuacao = value; }
-        }
-
-        public TabuleiroBatalhaNaval Tabuleiro
-        {
-            
-        }
-}
-
         
+
 
     }
     
