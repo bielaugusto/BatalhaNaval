@@ -1,0 +1,15 @@
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\BtalhaNaval.csproj.AssemblyReference.cache
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\BtalhaNaval.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\BtalhaNaval.AssemblyInfoInputs.cache
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\BtalhaNaval.AssemblyInfo.cs
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\BtalhaNaval.csproj.CoreCompileInputs.cache
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\bin\Debug\net6.0\BtalhaNaval.exe
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\bin\Debug\net6.0\BtalhaNaval.deps.json
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\bin\Debug\net6.0\BtalhaNaval.runtimeconfig.json
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\bin\Debug\net6.0\BtalhaNaval.dll
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\bin\Debug\net6.0\BtalhaNaval.pdb
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\BtalhaNaval.dll
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\refint\BtalhaNaval.dll
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\BtalhaNaval.pdb
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\BtalhaNaval.genruntimeconfig.cache
+C:\Users\Pedro\Desktop\BatalhaNaval-main\BtalhaNaval\obj\Debug\net6.0\ref\BtalhaNaval.dll
