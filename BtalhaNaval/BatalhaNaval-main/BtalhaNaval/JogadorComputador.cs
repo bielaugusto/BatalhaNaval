@@ -96,6 +96,17 @@ using System.Threading.Tasks;
             }
         }
 
+        public void ImprimirTabComputador()
+        {
+            for(int i = 0; i < numLinhas; i++)
+            {
+                for(int j = 0; j < numColunas; j++)
+                {
+                    Console.Write(tab1.Tabuleiro[i, j] + " ");
+                } Console.WriteLine();
+            }
+        }
+
         //Método para gerar uma posição aleatória
         public Posicao PosiAleatoria(Random random)
         {
