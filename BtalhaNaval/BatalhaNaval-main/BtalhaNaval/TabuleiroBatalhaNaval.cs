@@ -11,13 +11,13 @@ namespace BatalhaNaval
         private char[,] tabuleiro;
 
         //Função para zerar o tabuleiro e settar como padrão 'A' para todas as posições
-        private void zeraMatriz(char[,] tabuleiro)
+        private void zeraMatriz()
         {
             for (int i = 0; i < numLinhas; i++)
             {
                 for (int j = 0; j < numColunas; j++)
                 {
-                    this.tabuleiro[i, j] = 'A'; //agua
+                    tabuleiro[i, j] = 'A'; //agua
                 }
             }
         }
@@ -28,8 +28,7 @@ namespace BatalhaNaval
             this.numLinhas = numLinhas;
             this.numColunas = numColunas;
             tabuleiro = new char[numLinhas, numColunas];
-
-            zeraMatriz(tabuleiro);
+            zeraMatriz();
         }
 
         public char[,] Tabuleiro
@@ -49,8 +48,6 @@ namespace BatalhaNaval
             set { numColunas = value; }
         }
 
-        
-
         //Funções para imprimir os tabuleiros para os jogadores
         public void imprimirTabuleiroJogador(char[,] tabuleiro)
         {
@@ -58,24 +55,25 @@ namespace BatalhaNaval
             {
                 for (int j = 0; j < numColunas; j++)
                 {
-                    Console.Write(this.tabuleiro[i, j] + " ");
+                    Console.Write(tabuleiro[i, j] + " ");
                 }
                 Console.WriteLine(" ");
             }
-            
         }
 
-        public void imprimirTabuleiroAdversario(char[,] tabuleiro)
+        public void ImprimirTabuleiroAdversario()
         {
             for (int i = 0; i < numLinhas; i++)
             {
                 for (int j = 0; j < numColunas; j++)
                 {
-                    Console.Write(this.tabuleiro[i, j] + " ");
+                    if (tabuleiro[i, j] == 'B') // Barco
+                        Console.Write('A' + " ");
+                    else
+                        Console.Write(tabuleiro[i, j] + " ");
                 }
-                Console.WriteLine(" ");
+                Console.WriteLine();
             }
-            
         }
 
         public bool AdicionarEmbarcacao(Embarcacao embarcacao, Posicao posicao)
@@ -101,22 +99,22 @@ namespace BatalhaNaval
         }
 
 
-        public bool RecebeuAtaque(Posicao posicao)
+        /*public bool RecebeuAtaque(Posicao posicao)
         {
             // Verifica se a posição corresponde a uma embarcação no tabuleiro
-            if (this.tabuleiro[posicao.Linha, posicao.Coluna] != ' ')
+            if (tabuleiro[posicao.Linha, posicao.Coluna] != ' ')
             {
                 // Embarcação atingida
-                this.tabuleiro[posicao.Linha, posicao.Coluna] = 'X'; // Marcar como atingida no tabuleiro
+                tabuleiro[posicao.Linha, posicao.Coluna] = 'X'; // Marcar como atingida no tabuleiro
                 return true;
             }
             else
             {
                 // Água, nenhum navio atingido
-                this.tabuleiro[posicao.Linha, posicao.Coluna] = '-'; // Marcar como água no tabuleiro
+                tabuleiro[posicao.Linha, posicao.Coluna] = '-'; // Marcar como água no tabuleiro
                 return false;
             }
-        }
+        }*/
 
     }
 }
